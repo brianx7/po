@@ -77,7 +77,7 @@ TEST(po_test, vigdataserver_file)
 {
     namespace po = boost::program_options;
 
-    std::string fname = "/sandbox/work/VIGDataServer/src/VIGDataServerConfig.txt";
+    std::string fname = "../VIGDataServerConfig.txt";
     std::string cfg(fname);
     std::ifstream ifs(cfg.c_str());
     po::options_description cfgOptions("Cfg options");
@@ -87,29 +87,29 @@ TEST(po_test, vigdataserver_file)
         ("DefaultEnv",   po::value<std::string>()->default_value(""), "Name of tag messaging environment used if not specified.")
         ("DefaultOnRampAddr", po::value<std::string>()->default_value(""), "Name of tag messaging multicast env used if not specified.")
         ("DefaultNetwork", po::value<std::string>()->default_value(""), "Name of snapshot multicast addr used if not specified.")
-        ("DefaultPrefix", po::value<std::string>()->default_value(""), "Name of snapshot prefix used to get symbol  id not specified.")        
+        ("DefaultPrefix", po::value<std::string>()->default_value(""), "Name of snapshot prefix used to get symbol  id not specified.")
 
         ("SvrGroup"      , po::value<std::string>()->default_value("")             , "Name of tag messaging group server uses")
         ("SvrEnv"        , po::value<std::string>()->default_value("")             , "Name of tag messaging environment server uses")
-        ("SvrSource"     , po::value<std::string>()->default_value("VIGS.REQUEST") , "Name of tag messaging source that server uses")
+        ("SvrSource"     , po::value<std::string>()->default_value("VIGDS.REQUEST") , "Name of tag messaging source that server uses")
         ("SvrOnRampAddr" , po::value<std::string>()->default_value("")             , "Name of tag messaging multicast addr server uses")
         
         ("CacheGroup", po::value<std::string>()->default_value(""), "Name of tag messaging group used to get VCloud caches")
         ("CacheEnv",   po::value<std::string>()->default_value(""), "Name of tag messaging environment used to get VCloud caches")
         ("CacheOnRampAddr", po::value<std::string>()->default_value(""),"Name of tag messaging multicast addr used to get VCloud caches")
-        
+
         ("SnapshotGroup", po::value<std::string>()->default_value(""), "Name of tag messaging group used to get VCloud snapshots")
         ("SnapshotEnv",   po::value<std::string>()->default_value(""), "Name of tag messaging environment used to get VCloud snapshots")
         ("SnapshotOnRampAddr", po::value<std::string>()->default_value(""), "Name of tag messaging multicast env used to get VCloud snapshots")
         ("SnapshotNetwork", po::value<std::string>()->default_value(""), "Name of snapshot multicast addr used to get symbol data")
-        ("SnapshotPrefix", po::value<std::string>()->default_value(""), "Name of snapshot prefix used to get symbol data")        
+        ("SnapshotPrefix", po::value<std::string>()->default_value(""), "Name of snapshot prefix used to get symbol data")
 
         ("SymbologyGroup", po::value<std::string>()->default_value(""), "Name of symbology group used to get symbol data")
         ("SymbologyEnv", po::value<std::string>()->default_value(""), "Name of symbology environment used to get symbol data")
         ("SymbologyOnRampAddr", po::value<std::string>()->default_value(""), "Name of symbology multicast address used to get symbol data")
         ("SymbologyNetwork", po::value<std::string>()->default_value(""), "Name of symbology multicast addr used to get symbol data")
         ("SymbologyPrefix", po::value<std::string>()->default_value(""), "Name of symbology prefix used to get symbol data")
-        
+
         ("PositionGroup", po::value<std::string>()->default_value(""), "Name of position group used to get position data")
         ("PositionEnv", po::value<std::string>()->default_value(""), "Name of position environment used to get position data")
         ("PositionOnRampAddr", po::value<std::string>()->default_value(""), "Name of position multicast address used to get position data")
@@ -121,7 +121,7 @@ TEST(po_test, vigdataserver_file)
         ("YieldOnRampAddr", po::value<std::string>()->default_value(""), "Name of yield multicast address used to get yield data")
         ("YieldNetwork", po::value<std::string>()->default_value(""), "Name of yield multicast addr used to get yield data")
         ("YieldPrefix", po::value<std::string>()->default_value(""), "Name of yield prefix used to get yield data")
-        
+
         ("PriceGroup", po::value<std::string>()->default_value(""), "Name of price group used to get price data")
         ("PriceEnv", po::value<std::string>()->default_value(""), "Name of price environment used to get price data")
         ("PriceOnRampAddr", po::value<std::string>()->default_value(""),"Name of price multicast address used to get price data")
