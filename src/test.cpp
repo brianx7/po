@@ -14,7 +14,35 @@ void output_vm(po::variables_map const & vm)
 {
     std::cout << vm["DefaultGroup"].as<std::string>() << std::endl;
 }
-TEST(po_test, empty_var)
+TEST(po_test, no_var)
+{
+    namespace po = boost::program_options;
+
+    std::string fname = ".tmp.test.cnf";
+    {
+        std::ofstream tostr(fname.c_str(), std::ofstream::out | std::ofstream::trunc);
+        tostr.close();
+    }
+    std::string cfg(fname);
+    std::ifstream ifs(cfg.c_str());
+    po::options_description cfgOptions("Cfg options");
+    cfgOptions.add_options()
+        ("help", "test")
+        ("DefaultGroup", po::value<std::string>()->default_value(""), "Default group");
+    po::variables_map vm;
+    try
+    {
+        po::store(po::parse_config_file(ifs, cfgOptions), vm);
+        po::notify(vm);
+        output_vm(vm);
+        ASSERT_STREQ(vm["DefaultGroup"].as<std::string().c_str(), "");
+    }
+    catch (std::exception& e)
+    {
+        std::cout << e.what();
+    }
+}
+TEST(po_test, group_var)
 {
     namespace po = boost::program_options;
 
@@ -36,6 +64,7 @@ TEST(po_test, empty_var)
         po::store(po::parse_config_file(ifs, cfgOptions), vm);
         po::notify(vm);
         output_vm(vm);
+        ASSERT_STREQ(vm["DefaultGroup"].as<std::string().c_str(), "GROUP");
     }
     catch (std::exception& e)
     {
