@@ -77,7 +77,7 @@ TEST(po_test, vigdataserver_file)
 {
     namespace po = boost::program_options;
 
-    std::string fname = "../VIGDataServerConfig.txt";
+    std::string fname = "../TestFile.txt";
     std::string cfg(fname);
     std::ifstream ifs(cfg.c_str());
     po::options_description cfgOptions("Cfg options");
