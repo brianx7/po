@@ -1,5 +1,5 @@
 
-ADD_EXECUTABLE(testme test.cpp test_fact.cpp test_it.cpp test_rev.cpp test_byte.cpp)
+ADD_EXECUTABLE(testme test.cpp test_fact.cpp test_it.cpp test_rev.cpp test_byte.cpp test_lockfree.cpp test_constraints.cpp)
 
 MESSAGE (STATUS "Boost_PROGRAM_OPTIONS ${Boost_PROGRAM_OPTIONS_LIBRARY}")
 TARGET_LINK_LIBRARIES(testme  ${Boost_PROGRAM_OPTIONS_LIBRARY} gtest gtest_main)
