@@ -41,6 +41,13 @@ namespace {
   private:
     AddressVector _addresses;
   };
+
+  std::function<int (int)> multiply_by_2()
+  {
+    std::function<int (int)> func;
+    func = [](int x) -> int { return 2*x; };
+    return func;
+  }
 }
 TEST(po_test, lambda_test)
 {
@@ -67,3 +74,17 @@ TEST(po_test, lambda_test)
   EXPECT_EQ(results.size(), 0)
     << "results = " << ::testing::PrintToString(results);
  }
+
+TEST(po_test,lambda_test2)
+{
+  std::function<int (int)> func = multiply_by_2();
+  int n = func(4);
+  EXPECT_EQ(8, n)
+    << "results = " << ::testing::PrintToString(n);
+  EXPECT_EQ(1024, func(512))
+    << "results = " << ::testing::PrintToString(func(512));
+  EXPECT_EQ(1024, multiply_by_2()(512))
+    << "results = " << ::testing::PrintToString(multiply_by_2()(512));
+  
+}
+
