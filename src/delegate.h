@@ -36,3 +36,27 @@ private:
     }
 };
 
+template<typename T, typename return_type, typename... params>
+struct DelegateMaker
+{
+    template<return_type (T::*foo)(params...)>
+    static return_type methodCaller(void* o, params... xs)
+    {
+        return (static_cast<T*>(o)->*foo)(xs...);
+    }
+    template<return_type (T::*foo)(params...)>
+    inline static Delegate<return_type, params...> Bind(T* o)
+    {
+        return Delegate<return_type,params...>(o, &DelegateMaker::methodCaller<foo>);
+    }
+};
+
+template<typename T, typename return_type, typename... params>
+DelegateMaker<T,return_type,params...>
+makeDelegate(return_type (T::*)(params...))
+{
+    return DelegateMaker<T, return_type, params...>();
+}
+
+#define DELEGATE(foo, thisPrt) (makeDelegate(foo).Bind<foo>(thisPrt))
+
